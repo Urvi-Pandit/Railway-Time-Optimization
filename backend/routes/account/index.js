@@ -1,10 +1,10 @@
-// const express = require('express');
-// const router = express.Router();
+const express = require('express');
+const router = express.Router();
 // const {
 //   catchErrors
 // } = require('../../handlers/errorHandlers');
 // const {isAuthenticated} = require('../../handlers/passport');
-// const accountController = require('../../controllers/account/accountController');
+const accountController = require('../../controllers/account/accountController');
 // //Dependencies
 // const multer = require('multer');
 
@@ -59,7 +59,7 @@
 // router.post('/login',accountController.userLogin)
 // router.get('/login',accountController.getUserLogin)
 
-// router.get('/home',accountController.getHomePage)
+router.get('/home',accountController.provideMaxRoute)
 
 // router.get('/getpetInShelterPage',accountController.getpetInShelterPage)
 
@@ -106,4 +106,4 @@
 // router.get('/logout',isAuthenticated,
 //  accountController.logOut);
 
-// module.exports = router;
+module.exports = router;

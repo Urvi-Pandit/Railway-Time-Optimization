@@ -75,7 +75,7 @@ app.use((req, res, next) => {
 
 // handle our api routes!
 
-// app.use('/account', accountApi);
+app.use('/account', accountApi);
 
 
 
