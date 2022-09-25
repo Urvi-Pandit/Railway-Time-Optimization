@@ -401,68 +401,237 @@
 // }
 
 
-exports.provideMaxRoute = async(req,res,next)=>{
+exports.provideMaxRoute = async (req, res, next) => {
   var from_station = "Khandeshwar";
   var to_station = "Kurla";
   var station_reach_time = "04:35";
 
 
-  var harbour_stations_till_csmt = ["Panvel","Khandeshwar","Manasarovar","Kharghar","Belapur CBD","Seawood Darave","Nerul","Juinagar","Sanpada","Vashi","Mankhurd","Govandi","Chembur","Tilaknagar","Kurla","Chunabhatti","GTB Nagar","Vadala Road","Sewri","Cotton Green","Reay Road","Dockyard Road","Sandhurst Road","Masjid","CSMT"];
+  var harbour_stations_till_csmt = ["Panvel", "Khandeshwar", "Manasarovar", "Kharghar", "Belapur CBD", "Seawood Darave", "Nerul", "Juinagar", "Sanpada", "Vashi", "Mankhurd", "Govandi", "Chembur", "Tilaknagar", "Kurla", "Chunabhatti", "GTB Nagar", "Vadala Road", "Sewri", "Cotton Green", "Reay Road", "Dockyard Road", "Sandhurst Road", "Masjid", "CSMT"];
 
-  var from_station_present = harbour_stations_till_csmt.find( ele => ele===from_station);
-  var to_station_present = harbour_stations_till_csmt.find( ele => ele===to_station);
+  var from_station_present = harbour_stations_till_csmt.find(ele => ele === from_station);
+  var to_station_present = harbour_stations_till_csmt.find(ele => ele === to_station);
 
   // console.log(from_station_present);
   // console.log(to_station_present);
 
-  if(from_station_present && to_station_present){
-      const value =  await Best_Route(from_station_present,to_station_present,station_reach_time);
-      return res.status(200).json({
-        type:value
-      })
+  if (from_station_present && to_station_present) {
+    const value = await Best_Route(from_station_present, to_station_present, station_reach_time);
+    return res.status(200).json({
+      type: value
+    })
   }
 
 
 }
 
 
-const Best_Route= async(from_station_present,to_station_present,station_reach_time)=>{
-    //  var next_train = findNextTrain(from_station_present,station_reach_time);
-     var local_start_stations = ["Panvel","Belapur CBD","Nerul"];
+const Best_Route = async (from_station_present, to_station_present, station_reach_time) => {
+  var next_train = findNextTrain(from_station_present, station_reach_time);
+  var local_start_stations = ["Panvel", "Belapur CBD", "Nerul"];
 
-    //  if(next_train.end_station == "Thane"){
-            const next_local_start_station = await findNextLocalStartStation(from_station_present);
-            return next_local_start_station;
+  if (next_train.end_station == "Thane") {
+    const reach_time_juinagar = await findTimeTillJuinagar(next_train);
 
-            // const next_local_start_data =
+    const next_local_start_station = await findHopStation(from_station_present);
 
-            // const get_next_local_start_time = findNextLocalStartTime()
-    //  }
-    //  else {
-    //   return next_train;
-    //  }
+    return next_local_start_station;
+
+    const next_local_start_data =
+
+            const get_next_local_start_time = findNextLocalStartTime()
+  }
+  else {
+    return next_train;
+  }
 
 }
 
-const findNextLocalStartStation = async(from_station)=>{
 
-  var harbour_stations_till_csmt = ["Panvel","Khandeshwar","Manasarovar","Kharghar","Belapur CBD","Seawood Darave","Nerul","Juinagar","Sanpada","Vashi","Mankhurd","Govandi","Chembur","Tilaknagar","Kurla","Chunabhatti","GTB Nagar","Vadala Road","Sewri","Cotton Green","Reay Road","Dockyard Road","Sandhurst Road","Masjid","CSMT"];
 
-  var local_start_stations = ["Panvel","Belapur CBD","Nerul"];
+const findNextLocalStartStation = async (from_station) => {
 
-  var from_station_index = harbour_stations_till_csmt.findIndex( ele => ele== from_station)
+  var harbour_stations_till_csmt = ["Panvel", "Khandeshwar", "Manasarovar", "Kharghar", "Belapur CBD", "Seawood Darave", "Nerul", "Juinagar", "Sanpada", "Vashi", "Mankhurd", "Govandi", "Chembur", "Tilaknagar", "Kurla", "Chunabhatti", "GTB Nagar", "Vadala Road", "Sewri", "Cotton Green", "Reay Road", "Dockyard Road", "Sandhurst Road", "Masjid", "CSMT"];
+
+  var local_start_stations = ["Panvel", "Belapur CBD", "Nerul"];
+
+  var from_station_index = harbour_stations_till_csmt.findIndex(ele => ele == from_station)
 
   console.log(from_station_index);
 
-  var next_local_start_from_present_station ;
+  var next_local_start_from_present_station;
 
-  for(let i=from_station_index; i<harbour_stations_till_csmt.length; i++){
-               if(harbour_stations_till_csmt[i]=="Panvel" || harbour_stations_till_csmt[i]=="Belapur CBD" || harbour_stations_till_csmt[i]=="Nerul"){
-                next_local_start_from_present_station= harbour_stations_till_csmt[i];
-                break;
-               }
+  for (let i = from_station_index; i < harbour_stations_till_csmt.length; i++) {
+    if (harbour_stations_till_csmt[i] == "Panvel" || harbour_stations_till_csmt[i] == "Belapur CBD") {
+      next_local_start_from_present_station = harbour_stations_till_csmt[i];
+      break;
+    }
   }
 
-  return next_local_start_from_present_station;
+  const nextStation = next_local_start_from_present_station;
+
+  // now we got the next hoping station , now lets see the time when our train will reach at this station
+
+
+
+}
+
+
+
+const findNextTrain = async (from_station_present, station_reach_time) => {
+
+  // yeha station ke database me jaao and next train find karlo time ke help se
+  const next_train_at_provided_station = {
+    "Trains": [
+      {
+        "start_time": "04:33",
+        "end_time": "05:00",
+        "start_station": "panvel",
+        "end_station": "csmt",
+        "path": [
+          {
+            "station": "panvel",
+            "time": "7:09",
+            "platform": "1"
+          },
+          {
+            "station": "khandeshwar",
+            "time": "07:14",
+            "platform": "1"
+          },
+          {
+            "station": "manasarovar",
+            "time": "07:17",
+            "platform": "1"
+          },
+          {
+            "station": "kharghar",
+            "time": "07:20",
+            "platform": "1"
+          },
+          {
+            "station": "belapur",
+            "time": "07:24",
+            "platform": "1"
+          },
+          {
+            "station": "seawood darave",
+            "time": "07:28",
+            "platform": "1"
+          },
+          {
+            "station": "nerul",
+            "time": "07:31",
+            "platform": "1"
+          },
+          {
+            "station": "juinagar",
+            "time": "07:34",
+            "platform": "1"
+          },
+          {
+            "station": "sanpada",
+            "time": "07:37",
+            "platform": "1"
+          },
+          {
+            "station": "vashi",
+            "time": "07:39",
+            "platform": "1"
+          },
+          {
+            "station": "mankhurd",
+            "time": "07:47",
+            "platform": "1"
+          },
+          {
+            "station": "govandi",
+            "time": "07:50",
+            "platform": "1"
+          },
+          {
+            "station": "chembur",
+            "time": "07:52",
+            "platform": "1"
+          },
+          {
+            "station": "tilaknagar",
+            "time": "07:55",
+            "platform": "1"
+          },
+          {
+            "station": "kurla",
+            "time": "07:58",
+            "platform": "1"
+          }
+        ],
+        "line": "harbour",
+        "type": "slow"
+      },
+      {
+        "start_time": "07:50",
+        "end_time": "10:30",
+        "start_station": "belapur",
+        "end_station": "kurla",
+        "path": [
+          {
+            "station": "belapur",
+            "time": "",
+            "platform": "1"
+          },
+          {
+            "station": "seawood darave",
+            "time": "",
+            "platform": "1"
+          },
+          {
+            "station": "nerul",
+            "time": "",
+            "platform": "1"
+          },
+          {
+            "station": "juinagar",
+            "time": "",
+            "platform": "1"
+          },
+          {
+            "station": "sanpada",
+            "time": "",
+            "platform": "1"
+          },
+          {
+            "station": "vashi",
+            "time": "",
+            "platform": "1"
+          },
+          {
+            "station": "mankhurd",
+            "time": "",
+            "platform": "1"
+          },
+          {
+            "station": "govandi",
+            "time": "",
+            "platform": "1"
+          },
+          {
+            "station": "chembur",
+            "time": "",
+            "platform": "1"
+          },
+          {
+            "station": "tilaknagar",
+            "time": "",
+            "platform": "1"
+          },
+          {
+            "station": "kurla",
+            "time": "",
+            "platform": "1"
+          }
+        ],
+        "line": "harbour",
+        "type": "slow"
+      },
 
 }
