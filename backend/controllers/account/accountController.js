@@ -1,5 +1,5 @@
 // const passport = require('passport');
-// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 // const bcryptjs= require('bcryptjs')
 // const UserSchema = require('../../models/UserSchema');
 // const TotalScoreSchema = require('../../models/TotalScoreSchema');
@@ -11,6 +11,23 @@
 // const Cryptr = require('cryptr');
 // const multer = require('multer');
 // const xlsx = require('xlsx')
+const trainSchema = require('../../models/trainSchema');
+const panvelSchema = require('../../models/panvelSchema');
+const khandeshwarSchema = require('../../models/khandeshwarSchema');
+const khargharSchema = require('../../models/khargharSchema');
+const kurlaSchema = require('../../models/kurlaSchema');
+const belapurSchema = require('../../models/belapurSchema');
+const chemburSchema = require('../../models/chemburSchema');
+const govandiSchema = require('../../models/govandiSchema');
+const juinagarSchema = require('../../models/juinagarSchema');
+const manasaroverSchema = require('../../models/manasaroverSchema');
+const mankhurdSchema = require('../../models/mankhurdSchema');
+const nerulSchema = require('../../models/nerulSchema');
+const sanpadaSchema = require('../../models/sanpadaSchema');
+const seawoodSchema = require('../../models/seawoodSchema');
+const tilaknagarSchema = require('../../models/tilaknagarSchema');
+const vashiSchema = require('../../models/vashiSchema');
+
 
 
 // const razorpay = new Razorpay({
@@ -401,428 +418,14 @@
 // }
 
 
-var Stations =  [
-  {
-    "name" : "Panvel",
-    "trains" : [
-      {
-        "time": "04.33",
-        "train_number" : "1"
-      },
-      {
-        "time" : "04:49",
-        "train_number" : "2"
-      }
-    ],
-  },
-  {
-    "name" : "Khandeshwar",
-    "trains" : [
-      {
-        "time": "04.38",
-        "train_number" : "1"
-      },
-      {
-        "time" : "04:54",
-        "train_number" : "2"
-      }
-    ],
-  },
-  {
-    "name" : "Manasarovar",
-    "trains" : [
-      {
-        "time": "04.41",
-        "train_number" : "1"
-      },
-      {
-        "time" : "04:57",
-        "train_number" : "2"
-      }
-    ],
-  },
-  {
-    "name" : "Kharghar",
-    "trains" : [
-      {
-        "time": "04.44",
-        "train_number" : "1"
-      },
-      {
-        "time" : "05:00",
-        "train_number" : "2"
-      }
-    ],
-  },
-  {
-    "name" : "Belapur CBD",
-    "trains" : [
-      {
-        "time": "04:48",
-        "train_number" : "1"
-      },
-      {
-        "time" : "05:04",
-        "train_number" : "2"
-      },
-      {
-        "time" : "04:53",
-        "train_number" : "3"
-      }
-    ],
-  },
-  {
-    "name" : "Seawood Darave",
-    "trains" : [
-      {
-        "time": "04:52",
-        "train_number" : "1"
-      },
-      {
-        "time" : "05:08",
-        "train_number" : "2"
-      },
-      {
-        "time" : "04:57",
-        "train_number" : "3"
-      }
-    ],
-  },
-  {
-    "name" : "Nerul",
-    "trains" : [
-      {
-        "time": "04:56",
-        "train_number" : "1"
-      },
-      {
-        "time" : "05:11",
-        "train_number" : "2"
-      },
-      {
-        "time" : "05:00",
-        "train_number" : "3"
-      }
-    ],
-  },
-  {
-    "name" : "Juinagar",
-    "trains" : [
-      {
-        "time": "05:00",
-        "train_number" : "1"
-      },
-      {
-        "time" : "05:14",
-        "train_number" : "2"
-      },
-      {
-        "time" : "05:03",
-        "train_number" : "3"
-      }
-    ],
-  },
-  {
-    "name" : "Sanpada",
-    "trains" : [
-      {
-        "time" : "05:17",
-        "train_number" : "2"
-      },
-      {
-        "time" : "05:06",
-        "train_number" : "3"
-      }
-    ],
-  },
-  {
-    "name" : "Vashi",
-    "trains" : [
-      {
-        "time" : "05:19",
-        "train_number" : "2"
-      },
-      {
-        "time" : "05:08",
-        "train_number" : "3"
-      }
-    ],
-  },
-  {
-    "name" : "Mankhurd",
-    "trains" : [
-      {
-        "time" : "05:27",
-        "train_number" : "2"
-      },
-      {
-        "time" : "05:16",
-        "train_number" : "3"
-      }
-    ],
-  },
-  {
-    "name" : "Govandi",
-    "trains" : [
-      {
-        "time" : "05:30",
-        "train_number" : "2"
-      },
-      {
-        "time" : "05:19",
-        "train_number" : "3"
-      }
-    ],
-  },
-  {
-    "name" : "Chembur",
-    "trains" : [
-      {
-        "time" : "05:32",
-        "train_number" : "2"
-      },
-      {
-        "time" : "05:21",
-        "train_number" : "3"
-      }
-    ],
-  },
-  {
-    "name" : "Tilaknagar",
-    "trains" : [
-      {
-        "time" : "05:35",
-        "train_number" : "2"
-      },
-      {
-        "time" : "05:24",
-        "train_number" : "3"
-      }
-    ],
-  },
-  {
-    "name" : "Kurla",
-    "trains" : [
-      {
-        "time" : "05:38",
-        "train_number" : "2"
-      },
-      {
-        "time" : "05:27",
-        "train_number" : "3"
-      }
-    ],
-  },
-]
-
-var Train1 = {
-    "start_time": "04:33",
-    "end_time": "05:25",
-    "start_station": "Panvel",
-    "end_station": "Thane",
-    "path": [
-      {
-        "station": "panvel",
-        "time": "04:33",
-        "platform": "1"
-      },
-      {
-        "station": "khandeshwar",
-        "time": "04:38",
-        "platform": "1"
-      },
-      {
-        "station": "manasarovar",
-        "time": "04:41",
-        "platform": "1"
-      },
-      {
-        "station": "kharghar",
-        "time": "04:44",
-        "platform": "1"
-      },
-      {
-        "station": "belapur",
-        "time": "04:48",
-        "platform": "1"
-      },
-      {
-        "station": "seawood darave",
-        "time": "04:52",
-        "platform": "1"
-      },
-      {
-        "station": "nerul",
-        "time": "04:56",
-        "platform": "1"
-      },
-      {
-        "station": "juinagar",
-        "time": "05:00",
-        "platform": "1"
-      }
-    ],
-    "line": "harbour",
-    "type": "slow"
-  }
-
-var Train2 =  {
-  "start_time": "04:49",
-  "end_time": "06:08",
-  "start_station": "panvel",
-  "end_station": "csmt",
-  "path": [
-    {
-      "station": "panvel",
-      "time": "04:49",
-      "platform": "1"
-    },
-    {
-      "station": "khandeshwar",
-      "time": "04:54",
-      "platform": "1"
-    },
-    {
-      "station": "manasarovar",
-      "time": "04:57",
-      "platform": "1"
-    },
-    {
-      "station": "kharghar",
-      "time": "05:00",
-      "platform": "1"
-    },
-    {
-      "station": "belapur",
-      "time": "05:04",
-      "platform": "1"
-    },
-    {
-      "station": "seawood darave",
-      "time": "05:08",
-      "platform": "1"
-    },
-    {
-      "station": "nerul",
-      "time": "05:11",
-      "platform": "1"
-    },
-    {
-      "station": "juinagar",
-      "time": "05:14",
-      "platform": "1"
-    },
-    {
-      "station": "sanpada",
-      "time": "05:17",
-      "platform": "1"
-    },
-    {
-      "station": "vashi",
-      "time": "05:19",
-      "platform": "1"
-    },
-    {
-      "station": "mankhurd",
-      "time": "05:27",
-      "platform": "1"
-    },
-    {
-      "station": "govandi",
-      "time": "05:30",
-      "platform": "1"
-    },
-    {
-      "station": "chembur",
-      "time": "05:32",
-      "platform": "1"
-    },
-    {
-      "station": "tilaknagar",
-      "time": "05:35",
-      "platform": "1"
-    },
-    {
-      "station": "kurla",
-      "time": "05:38",
-      "platform": "1"
-    }
-  ],
-  "line": "harbour",
-  "type": "slow"
-}
-
-var Train3 =  {
-  "start_time": "04:53",
-  "end_time": "05:56",
-  "start_station": "Belapur CBD",
-  "end_station": "CSMT",
-  "path": [
-    {
-      "station": "Belapur CBD",
-      "time": "04:53",
-      "platform": "1"
-    },
-    {
-      "station": "seawood darave",
-      "time": "04:57",
-      "platform": "1"
-    },
-    {
-      "station": "nerul",
-      "time": "05:00",
-      "platform": "1"
-    },
-    {
-      "station": "juinagar",
-      "time": "05:03",
-      "platform": "1"
-    },
-    {
-      "station": "sanpada",
-      "time": "05:06",
-      "platform": "1"
-    },
-    {
-      "station": "vashi",
-      "time": "05:08",
-      "platform": "1"
-    },
-    {
-      "station": "mankhurd",
-      "time": "05:16",
-      "platform": "1"
-    },
-    {
-      "station": "govandi",
-      "time": "05:19",
-      "platform": "1"
-    },
-    {
-      "station": "chembur",
-      "time": "05:21",
-      "platform": "1"
-    },
-    {
-      "station": "tilaknagar",
-      "time": "05:24",
-      "platform": "1"
-    },
-    {
-      "station": "kurla",
-      "time": "05:27",
-      "platform": "1"
-    }
-  ],
-  "line": "harbour",
-  "type": "slow"
-}
 
 
 exports.provideMaxRoute = async (req, res, next) => {
-  var from_station = "Khandeshwar";
-  var to_station = "Kurla";
-  var station_reach_time = "04:35";
+  console.log(req.body)
+
+  var from_station = req.body.from;
+  var to_station = req.body.to;
+  var station_reach_time = req.body.time;
 
 
   var harbour_stations_till_csmt = ["Panvel", "Khandeshwar", "Manasarovar", "Kharghar", "Belapur CBD", "Seawood Darave", "Nerul", "Juinagar", "Sanpada", "Vashi", "Mankhurd", "Govandi", "Chembur", "Tilaknagar", "Kurla", "Chunabhatti", "GTB Nagar", "Vadala Road", "Sewri", "Cotton Green", "Reay Road", "Dockyard Road", "Sandhurst Road", "Masjid", "CSMT"];
@@ -834,6 +437,16 @@ exports.provideMaxRoute = async (req, res, next) => {
   // console.log(to_station_present);
 
   if (from_station_present && to_station_present) {
+    console.log("calling func Best_route")
+      // const resu = await kurlaSchema.find({
+      //   hour: {$gte:4},
+      //   min:{$gte:2},
+      // }).sort({min:1})
+      // console.log(resu);
+
+      // const resuTrain = await trainSchema.find({train_no:resu[0].train_no})
+      // return res.status(200).json({"msg":resuTrain});
+
     const value = await Best_Route(from_station_present, to_station_present, station_reach_time);
     return res.status(200).json({
       type: value
@@ -845,38 +458,32 @@ exports.provideMaxRoute = async (req, res, next) => {
 
 
 const Best_Route = async (from_station_present, to_station_present, station_reach_time) => {
-  var next_train = findNextTrain(from_station_present, station_reach_time);
+  console.log("calling getNextTrain");
+  var next_train = await getNextTrain(from_station_present.toLowerCase(), station_reach_time);
+  console.log(next_train)
 
-  if (next_train.end_station == "Thane") {
+  if (next_train.end_station == "thane") {
     var local_start_stations = ["Panvel", "Belapur CBD", "Nerul"];
 
+  // if(next_train.end_station != "belapur cbd")
+
     // time if catching train of thane
-    const going_till_belapur_then_hop = await findTimeIfHopAtBelapur(next_train);
+    const going_till_belapur = await findTimeToReachBelapur(next_train);
+    console.log(going_till_belapur);
+    return;
 
     // or time if we leave the thane train and catching next csmt train
-    const taking_next_train = await findTimeIfNextTrain(next_train.path[1].time)
+    // const taking_next_train = await findTimeIfNextTrain(next_train.path[1].time)
 
     // compare both time then provide best solution
-    if(catching_till_juinagar_then_change >= catching_next_train){
+    // if(catching_till_juinagar_then_change >= catching_next_train){
 
-    }
+    // }
 
   }
-  else {
-    return next_train;
-  }
-
-}
-
-
-const findNextTrain = async (from_station_present, station_reach_time) => {
-
-  // yeha station ke database me jaao and next train find karlo time ke help se
-  const next_train_at_provided_station = Train1
-
-
-  return next_train_at_provided_station;
-
+  // else {
+  //   return next_train;
+  // }
 
 }
 
@@ -910,8 +517,170 @@ const findNextLocalStartStation = async (from_station) => {
 }
 
 
+const getNextTrain = async (station , time)=>{
+
+  const array = time.split("");
+  const hour = parseInt(array[0]=="0"?array[1]:array[0]+array[1]);
+  const min = parseInt(array[3]=="0"?array[4]:array[3]+array[4]);
+  var result;
+  var resultTrain;
+
+  console.log(station)
+  switch (station) {
+    case "panvel":
+      result = await panvelSchema.find({"hour":{ $gte: hour },"min":{ $gte:min }}).sort({min:1});
+      resultTrain = await trainSchema.findOne({train_no:result[0].train_no})
+
+      return resultTrain;
+
+    case "khandeshwar":
+
+      result = await khandeshwarSchema.find({"hour":{ $gte: hour },"min":{ $gte:min }}).sort({min:1});
+      resultTrain = await trainSchema.findOne({train_no:result[0].train_no})
+
+      return resultTrain;
+
+    case "manasarover":
+      result = await manasaroverSchema.find({"hour":{ $gte: hour },"min":{ $gte: min }}).sort({min:1}).sort({min:1});
+      resultTrain = await trainSchema.findOne({train_no:result[0].train_no})
+
+      return resultTrain;
+
+    case "kharghar":
+      result = await khargharSchema.find({"hour":{ $gte:hour },"min":{ $gte:min }}).sort({min:1});
+      resultTrain = await trainSchema.findOne({train_no:result[0].train_no})
+
+      return resultTrain;
+
+    case "belapur cbd":
+      result = await belapurSchema.find({"hour":{ $gte:hour },"min":{ $gte:min }}).sort({min:1});
+      resultTrain = await trainSchema.findOne({train_no:result[0].train_no})
+
+      return resultTrain;
+
+    case "seawood darave":
+      result = await seawoodSchema.find({"hour":{ $gte:hour },"min":{ $gte: min }}).sort({min:1});
+      resultTrain = await trainSchema.findOne({train_no:result[0].train_no})
+
+      return resultTrain;
+
+    case "nerul":
+      result = await nerulSchema.find({"hour":{ $gte:hour },"min":{ $gte: min }}).sort({min:1});
+      resultTrain = await trainSchema.findOne({train_no:result[0].train_no})
+
+      return resultTrain;
+
+    case "juinagar":
+      result = await juinagarSchema.find({"hour":{ $gte:hour },"min":{ $gte:min }}).sort({min:1});
+      resultTrain = await trainSchema.findOne({train_no:result[0].train_no})
+
+      return resultTrain;
+
+    case "sanpada":
+      result = await sanpadaSchema.find({"hour":{ $gte:hour },"min":{ $gte:min }}).sort({min:1});
+      resultTrain = await trainSchema.findOne({train_no:result[0].train_no})
+
+      return resultTrain;
+
+    case "vashi":
+      result = await vashiSchema.find({"hour":{ $gte: hour },"min":{ $gte:min }}).sort({min:1});
+      resultTrain = await trainSchema.findOne({train_no:result[0].train_no})
+
+      return resultTrain;
+
+    case "mankhurd":
+      result = await mankhurdSchema.find({"hour":{ $gte: hour },"min":{ $gte:min }}).sort({min:1});
+      resultTrain = await trainSchema.findOne({train_no:result[0].train_no})
+
+      return resultTrain;
+
+    case "govandi":
+      result = await govandiSchema.find({"hour":{ $gte:hour },"min":{ $gte:min }}).sort({min:1});
+      resultTrain = await trainSchema.findOne({train_no:result[0].train_no})
+
+      return resultTrain;
+
+    case "chembur":
+      result = await chemburSchema.find({"hour":{ $gte:hour },"min":{ $gte: min }}).sort({min:1});
+      resultTrain = await trainSchema.findOne({train_no:result[0].train_no})
+
+      return resultTrain;
+
+    case "tilaknagar":
+      result = await tilaknagarSchema.find({"hour":{ $gte: hour },"min":{ $gte:min }}).sort({min:1});
+      resultTrain = await trainSchema.findOne({train_no:result[0].train_no})
+
+      return resultTrain;
+
+    case "kurla":
+      result = await kurlaSchema.find({"hour":{ $gte: hour },"min":{ $gte: min }}).sort({min:1});
+      resultTrain = await trainSchema.findOne({train_no:result[0].train_no})
+
+      return resultTrain;
+
+    default:
+      return {};
+  }
+}
 
 
 
 
+const findTimeToReachBelapur = async(nextTrain)=>{
+  var belapurReachTime;
+  var nextTrainTime;
 
+  await nextTrain.path.map((ele) =>{
+    if(ele.station=="belapur cbd"){
+      belapurReachTime= ele.time;
+    }
+
+   });
+
+   console.log(belapurReachTime);
+
+   const array = belapurReachTime.split("");
+  var hour = parseInt(array[0]=="0"?array[1]:array[0]+array[1]);
+  var min = parseInt(array[3]=="0"?array[4]:array[3]+array[4]);
+  if(min == 59){
+    hour++;
+
+  }
+  else{
+    min++;
+  }
+  var time=(hour<9?"0"+hour.toString():hour.toString())+":"+(min<9?"0"+min.toString():min.toString());
+  console.log(time);
+   const nextTrainAtBelapur = await getNextTrain("belapur cbd", time);
+   console.log(nextTrainAtBelapur);
+
+   await nextTrainAtBelapur.path.map((ele) =>{
+    if(ele.station=="belapur cbd"){
+      nextTrainTime= ele.time;
+    }
+   });
+
+   const array1 = nextTrainTime.split("");
+  var hour1 = parseInt(array1[0]=="0"?array1[1]:array1[0]+array1[1]);
+  var min1 = parseInt(array1[3]=="0"?array1[4]:array1[3]+array1[4]);
+
+  var hDiff = hour1 - hour;
+  var mDiff = min1 - min;
+  if(hour1>hour)
+   {
+    mDiff = 60+min-min1;
+    hDiff=0;
+   }
+
+
+  console.log(hDiff);
+  console.log(mDiff);
+
+   return belapurReachTime+nextTrainTime;
+  }
+
+  const compare_time = async(belapurReachTime, hour, min) => {
+    const array = belapurReachTime.split("");
+  const bhour = parseInt(array[0]=="0"?array[1]:array[0]+array[1]);
+  const bmin = parseInt(array[3]=="0"?array[4]:array[3]+array[4]);
+  }

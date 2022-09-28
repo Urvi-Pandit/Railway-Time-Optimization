@@ -4,28 +4,32 @@ const Schema = mongoose.Schema;
 
 const TrainSchema = new Schema({
     train_no:{
-        type: Number,
-        required: true
+        type: Number
     },
     start_time:{
-        type: Date,
-        required: true,
-        default: Date.now
+        type: String
     },
     end_time:{
-        type: Date,
-        required: true,
-        default: Date.now
+        type: String
     },
-    paths:{
-      type: Array,
-      default:undefined
+    start_station:{
+      type: String
+    },
+    end_station:{
+      type: String
+    },
+    path:{
+      type: Array
+    },
+    line:{
+      type: String,
+      default: "harbour"
     },
     type:{
       type: String,
-      default: "harbour"
+      default: "slow"
     }
 
   });
 
-module.exports = mongoose.model('traincontents', TrainSchema);
+module.exports = mongoose.model('trains', TrainSchema);

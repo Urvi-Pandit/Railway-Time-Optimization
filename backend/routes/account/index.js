@@ -59,7 +59,7 @@ const accountController = require('../../controllers/account/accountController')
 // router.post('/login',accountController.userLogin)
 // router.get('/login',accountController.getUserLogin)
 
-router.get('/home',accountController.provideMaxRoute)
+router.post('/home',accountController.provideMaxRoute)
 
 // router.get('/getpetInShelterPage',accountController.getpetInShelterPage)
 
