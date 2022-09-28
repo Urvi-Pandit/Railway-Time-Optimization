@@ -1,0 +1,210 @@
+[{
+  "_id": {
+    "$oid": "63319b5c197c79f3144564e1"
+  },
+  "train_no": 43311,
+  "start_time": "04:33",
+  "end_time": "05:25",
+  "start_station": "panvel",
+  "end_station": "thane",
+  "path": [
+    {
+      "station": "panvel",
+      "time": "04:33",
+      "platform": "1"
+    },
+    {
+      "station": "khandeshwar",
+      "time": "04:38",
+      "platform": "1"
+    },
+    {
+      "station": "manasarovar",
+      "time": "04:41",
+      "platform": "1"
+    },
+    {
+      "station": "kharghar",
+      "time": "04:44",
+      "platform": "1"
+    },
+    {
+      "station": "belapur cbd",
+      "time": "04:48",
+      "platform": "1"
+    },
+    {
+      "station": "seawood darave",
+      "time": "04:52",
+      "platform": "1"
+    },
+    {
+      "station": "nerul",
+      "time": "04:56",
+      "platform": "1"
+    },
+    {
+      "station": "juinagar",
+      "time": "05:00",
+      "platform": "1"
+    }
+  ],
+  "line": "harbour",
+  "type": "slow"
+},{
+  "_id": {
+    "$oid": "63319c4f197c79f3144564e2"
+  },
+  "train_no": 44911,
+  "start_time": "04:49",
+  "end_time": "06:08",
+  "start_station": "panvel",
+  "end_station": "csmt",
+  "path": [
+    {
+      "station": "panvel",
+      "time": "04:49",
+      "platform": "1"
+    },
+    {
+      "station": "khandeshwar",
+      "time": "04:54",
+      "platform": "1"
+    },
+    {
+      "station": "manasarovar",
+      "time": "04:57",
+      "platform": "1"
+    },
+    {
+      "station": "kharghar",
+      "time": "05:00",
+      "platform": "1"
+    },
+    {
+      "station": "belapur cbd",
+      "time": "05:04",
+      "platform": "1"
+    },
+    {
+      "station": "seawood darave",
+      "time": "05:08",
+      "platform": "1"
+    },
+    {
+      "station": "nerul",
+      "time": "05:11",
+      "platform": "1"
+    },
+    {
+      "station": "juinagar",
+      "time": "05:14",
+      "platform": "1"
+    },
+    {
+      "station": "sanpada",
+      "time": "05:17",
+      "platform": "1"
+    },
+    {
+      "station": "vashi",
+      "time": "05:19",
+      "platform": "1"
+    },
+    {
+      "station": "mankhurd",
+      "time": "05:27",
+      "platform": "1"
+    },
+    {
+      "station": "govandi",
+      "time": "05:30",
+      "platform": "1"
+    },
+    {
+      "station": "chembur",
+      "time": "05:32",
+      "platform": "1"
+    },
+    {
+      "station": "tilaknagar",
+      "time": "05:35",
+      "platform": "1"
+    },
+    {
+      "station": "kurla",
+      "time": "05:38",
+      "platform": "1"
+    }
+  ],
+  "line": "harbour",
+  "type": "slow"
+},{
+  "_id": {
+    "$oid": "63319c93197c79f3144564e3"
+  },
+  "train_no": 45322,
+  "start_time": "04:53",
+  "end_time": "05:56",
+  "start_station": "belapur cbd",
+  "end_station": "csmt",
+  "path": [
+    {
+      "station": "belapur cbd",
+      "time": "04:53",
+      "platform": "1"
+    },
+    {
+      "station": "seawood darave",
+      "time": "04:57",
+      "platform": "1"
+    },
+    {
+      "station": "nerul",
+      "time": "05:00",
+      "platform": "1"
+    },
+    {
+      "station": "juinagar",
+      "time": "05:03",
+      "platform": "1"
+    },
+    {
+      "station": "sanpada",
+      "time": "05:06",
+      "platform": "1"
+    },
+    {
+      "station": "vashi",
+      "time": "05:08",
+      "platform": "1"
+    },
+    {
+      "station": "mankhurd",
+      "time": "05:16",
+      "platform": "1"
+    },
+    {
+      "station": "govandi",
+      "time": "05:19",
+      "platform": "1"
+    },
+    {
+      "station": "chembur",
+      "time": "05:21",
+      "platform": "1"
+    },
+    {
+      "station": "tilaknagar",
+      "time": "05:24",
+      "platform": "1"
+    },
+    {
+      "station": "kurla",
+      "time": "05:27",
+      "platform": "1"
+    }
+  ],
+  "line": "harbour",
+  "type": "slow"
+}]
