@@ -1,16 +1,14 @@
-
-import './App.css';
-import RouteFile from './RouteFile';
+import React from 'react'
 import ReactDOM from "react-dom/client";
 import Home from './pages/Home/Home';
 import SignIn from './pages/SignIn/SignIn';
 import Register from './pages/Register/Register';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NoPage from './pages/NoPage/NoPage';
-function App() {
+const RouteFile = () => {
   return (
-    <div className="App" >
-   <BrowserRouter>
+    <div>
+            <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />}>
           
@@ -20,10 +18,9 @@ function App() {
         </Route>
       </Routes>
     </BrowserRouter>
-        {/* <Home /> */}
-        {/* <SignIn /> */}
+
     </div>
-  );
+  )
 }
 
-export default App;
+export default RouteFile

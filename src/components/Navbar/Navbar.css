@@ -1,0 +1,25 @@
+.Navbar_Container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between ;
+    margin:0 10px;
+    color:black;
+    z-index: 1;
+    
+}
+.left_Container{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    flex:1;
+    padding-left: 30px;
+}
+.right_Container{
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    flex:1
+}
+.Navbar_Content{
+    margin:0 20px;
+}

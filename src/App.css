@@ -1,12 +1,11 @@
-.App {
-  background-image: url('./local.jpg');
-  background-size: 100% 100%;
-  font-size:40px;
-  background-repeat: no-repeat;
-  padding: 330px; 
-  display: flex;
-  flex-direction: row-reverse;
-};
+*{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
 
+.routecard{
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
 
-
+.infocards{
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}

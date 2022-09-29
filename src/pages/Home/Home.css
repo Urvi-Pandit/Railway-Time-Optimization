@@ -1,0 +1,10 @@
+.Home_Banner{
+    background-image: url('../../media/sealink.jpg');
+    background-size: cover;
+    width: 100%;
+    height: 43vh;
+    color: black;
+}
+.Home_Container{
+    background-color: gray;
+}
