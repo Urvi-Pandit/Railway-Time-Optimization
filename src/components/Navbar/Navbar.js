@@ -12,39 +12,46 @@ const Navbar = () => {
             <img src={project_logo}  style={{height:40}}/>
              
             
-            <a className='Navbar_Content' style={{cursor:'pointer'}}>
-              
-              <Typography variant="h5" color="gray" className="mb-2">
-        Mumbai Local
-        </Typography>
-            </a>
-            <a className='Navbar_Content' style={{cursor:'pointer'}}>
-            <Typography variant="h5" color="gray" className="mb-2">
-        Trains
-        </Typography>
-            </a>
-            <a className='Navbar_Content' style={{cursor:'pointer'}}>
-            <Typography variant="h5" color="gray" className="mb-2">
-        Your Bookings
-        </Typography>
-            </a>
-            </div>
+            <Link className='Navbar_Content' style={{cursor:'pointer'}} to="/">
+                <Typography variant="h5" color="gray" className="mb-2">
+               Mumbai Local
+                </Typography>
 
+            </Link>
+
+            <Link className='Navbar_Content' style={{cursor:'pointer'}} to="/">
+                <Typography variant="h5" color="gray" className="mb-2">
+                Trains
+                </Typography>
+
+            </Link>
+           
+            <Link className='Navbar_Content' style={{cursor:'pointer'}} to="/">
+                <Typography variant="h5" color="gray" className="mb-2">
+                Your bookings
+                </Typography>
+
+            </Link>
+            </div>
+    
            <div className='right_Container'>
-            <a className='Navbar_Content' style={{cursor:'pointer'}}>
+           <Link className='Navbar_Content' style={{cursor:'pointer'}} to="/signin">
+
+
             <Typography variant="h5" color="gray" className="mb-2">
         Sign In
         </Typography>
-            </a>
+          
+            </Link>
             
-            {/* <Link className='Navbar_Content' style={{cursor:'pointer'}} to="/signin"> */}
+            <Link className='Navbar_Content' style={{cursor:'pointer'}} to="/register">
 
 
             <Typography variant="h5" color="gray" className="mb-2">
         Create an account
         </Typography>
           
-            {/* </Link> */}
+            </Link>
            </div>
            
         </div>

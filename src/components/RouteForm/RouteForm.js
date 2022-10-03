@@ -11,10 +11,56 @@ import {
     Option
   } from "@material-tailwind/react";
   import { Input,Switch } from "@material-tailwind/react";
-  
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 const RouteForm = () => {
+  const [formData, setFormData] = useState({
+    source: "",
+    destination: "",
+    time: '13:00',
+    passengers: 1,
+
+});
+const navigate  =  useNavigate();
+const handleChange = (event) => {
+  setFormData((prevState) => {
+      return {
+          ...prevState,
+          [event.target.name]: event.target.value,
+      };
+  });
+};
+
+const handleSubmit = (event) => {
+  event.preventDefault();
+  navigate('/showtrains')
+  console.log(formData);
+
+  // axios
+  //     .post("http://127.0.0.1:5000/weather-predict", {
+  //         tempr: Number(formData.tempr),
+  //         air_pressure: Number(formData.air_pressure),
+  //         wind_speed: Number(formData.wind_speed),
+  //         wind_direction: Number(formData.wind_direction),
+  //         relative_humidity: Number(formData.relative_humidity),
+  //     })
+  //     .then(function (response) {
+  //         setOutput(response.data.data);
+  //         console.log(output);
+  //     })
+  //     .catch(function (error) {
+  //         console.log(error);
+  //     });
+  setFormData({
+    source: "",
+    destination: "",
+    time: 13.00,
+    passengers: 1,
+  });
+};
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
  <div style={{marginTop:100}}>
          <Card className="w-96 routecard" style={{width:1300,marginLeft:100,marginRight:100,marginTop:100,paddingLeft:80}}>
       
@@ -27,7 +73,7 @@ const RouteForm = () => {
         </Typography>
         <div className="flex w-full items-end gap-4" >
         <div className="w-72" >
-        <Select variant="standard" label="Select Passengers" style={{textDecoration:'none'}}>
+        <Select variant="standard" label="Select Passengers" style={{textDecoration:'none'}} >
         <Option>1</Option>
         <Option>2</Option>
         <Option>3</Option>
@@ -38,13 +84,16 @@ const RouteForm = () => {
         </div>
         <div className="flex w-full items-end gap-4">
         <div className="w-72">
-      <Input label="Source" icon={<i className="fas fa-heart" />} style={{backgroundColor:'#ECEFF1'}}/>
+      <Input label="Source" icon={<i className="fas fa-heart" />} style={{backgroundColor:'#ECEFF1'}}  id="source" name="source"
+      value={formData.source} onChange={handleChange} required/>
          </div>
          <div className="w-72">
-      <Input label="Destination" icon={<i className="fas fa-heart" />} style={{backgroundColor:'#ECEFF1'}}/>
+      <Input label="Destination" icon={<i className="fas fa-heart" />} style={{backgroundColor:'#ECEFF1'}} id="destination" name="destination"
+      value={formData.destination} onChange={handleChange} required/>
     </div>
     <div className="w-72">
-      <Input label="Time" icon={<i className="fas fa-heart" />} style={{backgroundColor:'#ECEFF1'}} type="time" value="13:30"/>
+      <Input label="Time" icon={<i className="fas fa-heart" />} style={{backgroundColor:'#ECEFF1'}} type="time" id="time" name="time"
+      value={formData.source} onChange={handleChange}/>
     </div>
     
     <Button variant="gradient" color='purple' style={{marginLeft:40}} type="submit">Search</Button>
