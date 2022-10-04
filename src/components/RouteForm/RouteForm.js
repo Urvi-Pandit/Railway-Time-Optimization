@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 import {
     Card,
     CardHeader,
@@ -11,16 +12,20 @@ import {
     Option
   } from "@material-tailwind/react";
   import { Input,Switch } from "@material-tailwind/react";
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+  import { useNavigate } from 'react-router-dom';
+  import { useState } from 'react';
+
+  
 const RouteForm = () => {
-  const [formData, setFormData] = useState({
+ 
+const [formData, setFormData] = useState({
     source: "",
     destination: "",
-    time: '13:00',
+    time: "",
     passengers: 1,
-
 });
+
+
 const navigate  =  useNavigate();
 const handleChange = (event) => {
   setFormData((prevState) => {
@@ -33,30 +38,31 @@ const handleChange = (event) => {
 
 const handleSubmit = (event) => {
   event.preventDefault();
-  navigate('/showtrains')
+  navigate('/showtrains',{state:{source:formData.source,destination:formData.destination,time:formData.time}})
   console.log(formData);
 
-  // axios
-  //     .post("http://127.0.0.1:5000/weather-predict", {
-  //         tempr: Number(formData.tempr),
-  //         air_pressure: Number(formData.air_pressure),
-  //         wind_speed: Number(formData.wind_speed),
-  //         wind_direction: Number(formData.wind_direction),
-  //         relative_humidity: Number(formData.relative_humidity),
+  // axios.post("http://localhost:8787/account/getTimeSavingRoute", {
+  //         from : formData.source,
+  //         to: formData.destination,
+  //         time: formData.time,
+
   //     })
   //     .then(function (response) {
-  //         setOutput(response.data.data);
-  //         console.log(output);
+  //         console.log(response);
+  //         navigate('/showtrains',{state:{source:formData.source,destination:formData.destination,time:formData.time}})
+  //         console.log(formData);
   //     })
   //     .catch(function (error) {
   //         console.log(error);
   //     });
-  setFormData({
-    source: "",
-    destination: "",
-    time: 13.00,
-    passengers: 1,
-  });
+
+      
+  // setFormData({
+  //   source: "",
+  //   destination: "",
+  //   time: 13.00,
+  //   passengers: 1,
+  // });
 };
 
   return (
@@ -68,9 +74,7 @@ const handleSubmit = (event) => {
         <Typography variant="h5" className="mb-2">
           Search for the Most Optimal Train Route
         </Typography>
-        <Typography>
-  
-        </Typography>
+       
         <div className="flex w-full items-end gap-4" >
         <div className="w-72" >
         <Select variant="standard" label="Select Passengers" style={{textDecoration:'none'}} >
@@ -85,15 +89,15 @@ const handleSubmit = (event) => {
         <div className="flex w-full items-end gap-4">
         <div className="w-72">
       <Input label="Source" icon={<i className="fas fa-heart" />} style={{backgroundColor:'#ECEFF1'}}  id="source" name="source"
-      value={formData.source} onChange={handleChange} required/>
+      value={formData.source} onChange={handleChange} required type='text'/>
          </div>
          <div className="w-72">
       <Input label="Destination" icon={<i className="fas fa-heart" />} style={{backgroundColor:'#ECEFF1'}} id="destination" name="destination"
-      value={formData.destination} onChange={handleChange} required/>
+      value={formData.destination} onChange={handleChange} required type='text'/>
     </div>
     <div className="w-72">
       <Input label="Time" icon={<i className="fas fa-heart" />} style={{backgroundColor:'#ECEFF1'}} type="time" id="time" name="time"
-      value={formData.source} onChange={handleChange}/>
+      onChange={handleChange}/>
     </div>
     
     <Button variant="gradient" color='purple' style={{marginLeft:40}} type="submit">Search</Button>

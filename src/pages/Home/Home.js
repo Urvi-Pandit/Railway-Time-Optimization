@@ -25,7 +25,7 @@ const Home = () => {
         Book Train Tickets
         </Typography>
           </div>
-          
+
          
           <RouteForm />
         </div>

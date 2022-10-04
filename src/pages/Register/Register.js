@@ -33,7 +33,7 @@ const handleChange = (event) => {
 
 const handleSubmit = (event) => {
   event.preventDefault();
-  navigate('/')
+  navigate('/',{})
   console.log(formData);
 
   // axios

@@ -11,9 +11,11 @@ import Navbar from "../../components/Navbar/Navbar";
 import RouteForm from '../../components/RouteForm/RouteForm';
 import './Show_Trains.css'
 import { Chrono } from "react-chrono";
+import { useLocation } from 'react-router-dom';
 const Show_Trains = () => {
     const [open, setOpen] = useState(0);
- 
+    const location = useLocation();
+    console.log(location.state)
   const handleOpen = (value) => {
     setOpen(open === value ? 0 : value);
   };
