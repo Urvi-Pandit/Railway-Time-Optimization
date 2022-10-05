@@ -38,42 +38,15 @@ app.use(cors())
 
 app.use(cookieParser());
 
-app.use(session({
-  secret: process.env.SECRET,
-  key: process.env.KEY,
-  resave: false,
-  saveUninitialized: false,
-  store: new MongoStore({
-    mongooseConnection: mongoose.connection
-  })
-}));
-
-
-// Passport configuration
-initializingPassport(passport);
-
-// Passport JS is what we use to handle our logins
-app.use(passport.initialize());
-app.use(passport.session());
-
-
-app.use(flash());
 
 
 
-app.use((req, res, next) => {
-  res.locals.session = req.session;
-  res.locals.flashes = req.flash();
-  res.locals.user = req.user || null;
-  res.locals.currentPath = req.path;
-  next();
-});
 
-// promisify some callback based APIs
-app.use((req, res, next) => {
-  req.login = promisify(req.login, req);
-  next();
-});
+
+
+
+
+
 
 
 
@@ -83,19 +56,5 @@ app.use('/', accountApi);
 
 
 
-// If that above routes didnt work, we 404 them and forward to error handler
-app.use(errorHandlers.notFound);
 
-// One of our error handlers will see if these errors are just validation errors
-app.use(errorHandlers.flashValidationErrors);
-
-// Otherwise this was a really bad error we didn't expect!
-if (app.get('env') === 'development') {
-  /* Development Error Handler - Prints stack trace */
-  app.use(errorHandlers.developmentErrors);
-}
-// production error handler
-app.use(errorHandlers.productionErrors);
-
-// done! we export it so we can start the site in start.js
 module.exports = app;
