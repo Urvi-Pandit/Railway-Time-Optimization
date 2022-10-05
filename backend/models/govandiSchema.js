@@ -18,4 +18,4 @@ const govandiSchema = new Schema({
 
   });
 
-module.exports = mongoose.model('govandi', govandiSchema);
+module.exports = mongoose.model('govandis', govandiSchema);

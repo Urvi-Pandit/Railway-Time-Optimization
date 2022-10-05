@@ -18,4 +18,4 @@ const mankhurdSchema = new Schema({
 
   });
 
-module.exports = mongoose.model('mankhurd', mankhurdSchema);
+module.exports = mongoose.model('mankhurds', mankhurdSchema);

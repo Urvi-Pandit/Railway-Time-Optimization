@@ -18,4 +18,4 @@ const nerulSchema = new Schema({
 
   });
 
-module.exports = mongoose.model('nerul', nerulSchema);
+module.exports = mongoose.model('neruls', nerulSchema);

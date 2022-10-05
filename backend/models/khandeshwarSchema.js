@@ -18,4 +18,4 @@ const khandeshwarSchema = new Schema({
 
   });
 
-module.exports = mongoose.model('khandeshwar', khandeshwarSchema);
+module.exports = mongoose.model('khandeshwars', khandeshwarSchema);

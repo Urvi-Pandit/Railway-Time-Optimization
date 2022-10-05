@@ -126,6 +126,7 @@ exports.provideMaxRoute = async (req, res, next) => {
       case "khandeshwar":
 
         result = await khandeshwarSchema.find({"hour":{ $gte: hour },"min":{ $gte:min }}).sort({min:1});
+        console.log(result)
         resultTrain = await trainSchema.findOne({train_no:result[0].train_no})
 
         return resultTrain;

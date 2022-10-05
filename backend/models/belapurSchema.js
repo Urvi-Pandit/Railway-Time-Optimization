@@ -18,4 +18,4 @@ const belapurSchema = new Schema({
 
   });
 
-module.exports = mongoose.model('belapur cbd', belapurSchema);
+module.exports = mongoose.model('belapur cbds', belapurSchema);

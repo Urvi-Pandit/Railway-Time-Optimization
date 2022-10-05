@@ -18,4 +18,4 @@ const sanpadaSchema = new Schema({
 
   });
 
-module.exports = mongoose.model('sanpada', sanpadaSchema);
+module.exports = mongoose.model('sanpadas', sanpadaSchema);

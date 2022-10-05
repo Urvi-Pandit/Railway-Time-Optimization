@@ -18,4 +18,4 @@ const manasaroverSchema = new Schema({
 
   });
 
-module.exports = mongoose.model('manasarover', manasaroverSchema);
+module.exports = mongoose.model('manasarovers', manasaroverSchema);

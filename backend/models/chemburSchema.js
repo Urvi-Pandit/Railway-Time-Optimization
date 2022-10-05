@@ -18,4 +18,4 @@ const chemburSchema = new Schema({
 
   });
 
-module.exports = mongoose.model('chembur', chemburSchema);
+module.exports = mongoose.model('chemburs', chemburSchema);

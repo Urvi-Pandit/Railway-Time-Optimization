@@ -18,4 +18,4 @@ const tilaknagarSchema = new Schema({
 
   });
 
-module.exports = mongoose.model('tilaknagar', tilaknagarSchema);
+module.exports = mongoose.model('tilaknagars', tilaknagarSchema);

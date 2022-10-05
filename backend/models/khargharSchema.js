@@ -18,4 +18,4 @@ const khargharSchema = new Schema({
 
   });
 
-module.exports = mongoose.model('kharghar', khargharSchema);
+module.exports = mongoose.model('kharghars', khargharSchema);

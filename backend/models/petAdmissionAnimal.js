@@ -36,4 +36,4 @@ const petAdmissionAnimalSchema = new Schema({
 
   });
 
-module.exports = mongoose.model('petAdmissionAnimal', petAdmissionAnimalSchema);
+module.exports = mongoose.model('petAdmissionAnimals', petAdmissionAnimalSchema);

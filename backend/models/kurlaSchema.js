@@ -18,4 +18,4 @@ const kurlaSchema = new Schema({
 
   });
 
-module.exports = mongoose.model('kurla', kurlaSchema);
+module.exports = mongoose.model('kurlas', kurlaSchema);

@@ -18,4 +18,4 @@ const juinagarSchema = new Schema({
 
   });
 
-module.exports = mongoose.model('juinagar', juinagarSchema);
+module.exports = mongoose.model('juinagars', juinagarSchema);

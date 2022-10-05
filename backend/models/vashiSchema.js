@@ -18,4 +18,4 @@ const vashiSchema = new Schema({
 
   });
 
-module.exports = mongoose.model('vashi', vashiSchema);
+module.exports = mongoose.model('vashis', vashiSchema);

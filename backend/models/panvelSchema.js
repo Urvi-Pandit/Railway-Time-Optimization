@@ -18,4 +18,4 @@ const panvelSchema = new Schema({
 
   });
 
-module.exports = mongoose.model('panvel', panvelSchema);
+module.exports = mongoose.model('panvels', panvelSchema);
