@@ -12,11 +12,11 @@ import {
   import LifeLine from '../../media/lifeline.jpg';
 const InfoCards = () => {
   return (
-    <div style={{marginTop:100}} className='flex w-full items-center justify-center  mt-20 gap-20'>
+    <div style={{marginTop:20}} className='info_cards_container'>
 
-<Card className="infocards mt-20">
+<Card className="infocards">
       <CardHeader floated={false} >
-        <img src={local_Train}style={{height:160,width:250}}  alt="profile-picture" />
+        <img src={local_Train}style={{height:160,width:'100%'}}  alt="profile-picture" />
       </CardHeader>
       <CardBody className="text-center">
         <Typography variant="h5" color="gray" className="mb-2">
@@ -27,9 +27,9 @@ const InfoCards = () => {
       
     </Card>
 
-    <Card className=" infocards mt-20">
+    <Card className=" infocards ">
       <CardHeader floated={false} >
-        <img src={CSMT} alt="profile-picture" style={{height:160,width:250}} />
+        <img src={CSMT} alt="profile-picture" style={{height:160,width:'100%'}} />
       </CardHeader>
       <CardBody className="text-center">
         <Typography variant="h5" color="gray" className="mb-2">
@@ -39,9 +39,9 @@ const InfoCards = () => {
       </CardBody>
       
     </Card>
-    <Card className="infocards mt-20">
+    <Card className="infocards ">
       <CardHeader floated={false} >
-        <img src={LifeLine} alt="profile-picture" style={{height:160,width:250}}/>
+        <img src={LifeLine} alt="profile-picture" style={{height:160,width:'100%'}}/>
       </CardHeader>
       <CardBody className="text-center">
         <Typography variant="h5" color="gray" className="mb-2">

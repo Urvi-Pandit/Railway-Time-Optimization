@@ -39,7 +39,7 @@ const handleChange = (event) => {
 const handleSubmit = (event) => {
   event.preventDefault();
   // navigate('/showtrains',{state:{source:formData.source,destination:formData.destination,time:formData.time}})
-  // console.log(formData);
+  console.log(formData);
 
   axios.post("http://localhost:8787/getTimeSavingRoute", {
           from : formData.source,
@@ -64,9 +64,10 @@ const handleSubmit = (event) => {
 };
 
   return (
-    <form onSubmit={handleSubmit}>
- <div style={{marginTop:100}}>
-         <Card className="w-96 routecard" style={{width:1300,marginLeft:100,marginRight:100,marginTop:160,paddingLeft:80}}>
+    <form onSubmit={handleSubmit} style={{display:'flex',justifyContent:'center'}}>
+ <div className='routeformcontainer'>
+ {/* style={{width:1300,marginLeft:100,marginRight:100,paddingLeft:80}} */}
+         <Card className="routecard" >
 
       <CardBody className="text-center">
         <Typography variant="h5" className="mb-2">
@@ -74,26 +75,68 @@ const handleSubmit = (event) => {
         </Typography>
 
 
-        <div className="flex w-full items-end gap-4">
-        <div className="w-72">
-      <Input label="Source" icon={<i className="fas fa-heart" />} style={{backgroundColor:'#ECEFF1'}}  id="source" name="source"
-      value={formData.source} onChange={handleChange} required type='text'/>
-         </div>
-         <div className="w-72">
-      <Input label="Destination" icon={<i className="fas fa-heart" />} style={{backgroundColor:'#ECEFF1'}} id="destination" name="destination"
-      value={formData.destination} onChange={handleChange} required type='text'/>
+        <div className="routeformcard">
+        <div className="inputfields">
+      {/* <Input label="Source" icon={<i className="fas fa-heart" />} style={{backgroundColor:'#ECEFF1'}}  id="source" name="source"
+      value={formData.source} onChange={handleChange} required type='text'/> */}
+      
+<select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" style={{backgroundColor:'#ECEFF1'}}  id="source" name="source"
+      value={formData.source} onChange={handleChange} required type='text'>
+<option selected>Choose a source station</option>
+<option value="Panvel">Panvel</option>
+  <option value="Khandeshwar">Khandeshwar</option>
+  <option value="Manasarovar">Manasarovar</option>
+  <option value="Kharghar">Kharghar</option>
+  <option value="Belapur">Belapur</option>
+  <option value="Seawood Darave">Seawood Darave</option>
+  <option value="Nerul">Nerul</option>
+  <option value="Juinagar">Juinagar</option>
+  <option value="Sanpada">Sanpada</option>
+  <option value="Vashi">Vashi</option>
+  <option value="Mankhurd">Mankhurd</option>
+  <option value="Govandi">Govandi</option>
+  <option value="Chembur">Chembur</option>
+  <option value="Tilaknagar">Tilaknagar</option>
+  <option value="Kurla">Kurla</option>
+</select>
+</div>
+
+         <div className="inputfields">
+      {/* <Input label="Destination" icon={<i className="fas fa-heart" />} style={{backgroundColor:'#ECEFF1'}} id="destination" name="destination"
+      value={formData.destination} onChange={handleChange} required type='text'/> */}
+      
+      <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      style={{backgroundColor:'#ECEFF1'}} id="destination" name="destination"
+      value={formData.destination} onChange={handleChange} required type='text'>
+  <option selected>Choose a destination station</option>
+  <option value="Panvel">Panvel</option>
+  <option value="Khandeshwar">Khandeshwar</option>
+  <option value="Manasarovar">Manasarovar</option>
+  <option value="Kharghar">Kharghar</option>
+  <option value="Belapur">Belapur</option>
+  <option value="Seawood Darave">Seawood Darave</option>
+  <option value="Nerul">Nerul</option>
+  <option value="Juinagar">Juinagar</option>
+  <option value="Sanpada">Sanpada</option>
+  <option value="Vashi">Vashi</option>
+  <option value="Mankhurd">Mankhurd</option>
+  <option value="Govandi">Govandi</option>
+  <option value="Chembur">Chembur</option>
+  <option value="Tilaknagar">Tilaknagar</option>
+  <option value="Kurla">Kurla</option>
+</select>
     </div>
-    <div className="w-72">
+    <div className="inputfields">
 
       <Input label="Time" icon={<i className="fas fa-heart" />} style={{backgroundColor:'#ECEFF1'}} type="time" id="time" name="time"
       onChange={handleChange}/>
     </div>
 
-    <Button variant="gradient" color='purple' style={{marginLeft:40}} type="submit">Search</Button>
+    <Button variant="gradient" color='purple' style={{margin:10,width:200,height:'60%'}} type="submit">Search</Button>
         </div>
 
       </CardBody>
-
+      
     </Card>
 
     </div>

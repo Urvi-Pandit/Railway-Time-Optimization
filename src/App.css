@@ -2,11 +2,131 @@
   font-family: Georgia, 'Times New Roman', Times, serif;
  
 }
+.routeformcard{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 
+}
 .routecard{
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ width:90%;
+ 
+ 
 }
-
+.routeformcontainer{
+  padding:0% 10%;
+  display: flex;
+  justify-content: center;
+  margin:0;
+  
+ 
+}
 .infocards{
   box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  width:20%;
+  height:30%;
+  margin:5px;
+}
+.info_cards_container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.inputfields{
+  width: 20%;
+  height: 50px;
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .Home_Banner{
+ 
+    background-size: cover;
+    width: 100%;
+    height: 45%;
+    color: black;
+}
+.routeformcard{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width:90%;
+  padding:0;
+  margin:0;
+  
+}
+.routecard{
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+}
+.routeformcontainer{
+  padding:0% 10%;
+  width:380px;
+  padding:0;
+  margin:0;
+}
+.info_cards_container{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.inputfields{
+  width: 90%;
+  height: 40px;
+  margin:10px;
+}
+.infocards{
+  width :90%;
+}
+}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .routeformcard{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width:100%;
+   
+    
+  }
+  .routecard{
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    
+  }
+  .routeformcontainer{
+    padding:0% 10%;
+    width:100%;
+    /* z-index: -1; */
+  }
+  .info_cards_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .inputfields{
+    width: 70%;
+    height: 50px;
+    margin:10px
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 950px) {
+  
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
 }

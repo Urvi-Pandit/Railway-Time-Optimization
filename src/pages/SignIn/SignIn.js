@@ -84,7 +84,7 @@ import { useState } from "react";
           <Input label="Email" size="lg" id="Email" name="Email"
       value={formData.Email} onChange={handleChange} required/>
           <Input label="Password" size="lg" id="Password" name="Password"
-      value={formData.Password} onChange={handleChange} required/>
+      value={formData.Password} onChange={handleChange} required type="password"/>
           <div className="-ml-2.5">
             <Checkbox label="Remember Me" />
           </div>
