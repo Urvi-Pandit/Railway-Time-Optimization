@@ -39,6 +39,14 @@ exports.provideMaxRoute = async (req, res, next) => {
   if (from_station_present && to_station_present) {
 
     const value = await Best_Route(from_station_present, to_station_present, station_reach_time);
+    // if no route found and value is {}
+    if(Object.keys(value).length === 0 && value.constructor === Object){
+      return res.status(200).json({
+        type:"failure",
+        train: "No train found"
+      })
+    }
+    // if route is found
     if(value.first_train){
       return res.status(200).json({
         type:"success",
@@ -67,11 +75,9 @@ exports.provideMaxRoute = async (req, res, next) => {
 
       // time if catching train of thane
       const timeDiff = await findTimeToReachBelapurandGetNextTrain(next_train);
-      console.log(timeDiff);
 
       // or time if we leave the thane train and catching next csmt train
       var firstTrainReachTime = await getFirstTrainReachTime(next_train,from_station_present.toLowerCase());
-      console.log(firstTrainReachTime);
       const array = firstTrainReachTime.split("");
       var hour = parseInt(array[0]=="0"?array[1]:array[0]+array[1]);
       var min = parseInt(array[3]=="0"?array[4]:array[3]+array[4]);
@@ -82,7 +88,6 @@ exports.provideMaxRoute = async (req, res, next) => {
         min++;
       }
       var time=(hour<9?"0"+hour.toString():hour.toString())+":"+(min<9?"0"+min.toString():min.toString());
-      console.log(time);
 
       const taking_next_train = await getNextTrain(from_station_present.toLowerCase(), time);
 
@@ -119,6 +124,9 @@ exports.provideMaxRoute = async (req, res, next) => {
     switch (station) {
       case "panvel":
         result = await panvelSchema.find({"hour":{ $gte: hour },"min":{ $gte:min }}).sort({min:1});
+        if(!result.length){
+          return {};
+        }
         resultTrain = await trainSchema.findOne({train_no:result[0].train_no})
 
         return resultTrain;
@@ -126,85 +134,129 @@ exports.provideMaxRoute = async (req, res, next) => {
       case "khandeshwar":
 
         result = await khandeshwarSchema.find({"hour":{ $gte: hour },"min":{ $gte:min }}).sort({min:1});
+        if(!result.length){
+          return {};
+        }
         console.log(result)
+
         resultTrain = await trainSchema.findOne({train_no:result[0].train_no})
 
         return resultTrain;
 
       case "manasarover":
         result = await manasaroverSchema.find({"hour":{ $gte: hour },"min":{ $gte: min }}).sort({min:1}).sort({min:1});
+
+        if(!result.length){
+          return {};
+        }
         resultTrain = await trainSchema.findOne({train_no:result[0].train_no})
 
         return resultTrain;
 
       case "kharghar":
         result = await khargharSchema.find({"hour":{ $gte:hour },"min":{ $gte:min }}).sort({min:1});
+        if(!result.length){
+          return {};
+        }
         resultTrain = await trainSchema.findOne({train_no:result[0].train_no})
 
         return resultTrain;
 
       case "belapur cbd":
         result = await belapurSchema.find({"hour":{ $gte:hour },"min":{ $gte:min }}).sort({min:1});
+        if(!result.length){
+          return {};
+        }
         resultTrain = await trainSchema.findOne({train_no:result[0].train_no})
 
         return resultTrain;
 
       case "seawood darave":
         result = await seawoodSchema.find({"hour":{ $gte:hour },"min":{ $gte: min }}).sort({min:1});
+        if(!result.length){
+          return {};
+        }
         resultTrain = await trainSchema.findOne({train_no:result[0].train_no})
 
         return resultTrain;
 
       case "nerul":
         result = await nerulSchema.find({"hour":{ $gte:hour },"min":{ $gte: min }}).sort({min:1});
+        if(!result.length){
+          return {};
+        }
         resultTrain = await trainSchema.findOne({train_no:result[0].train_no})
 
         return resultTrain;
 
       case "juinagar":
         result = await juinagarSchema.find({"hour":{ $gte:hour },"min":{ $gte:min }}).sort({min:1});
+        if(!result.length){
+          return {};
+        }
         resultTrain = await trainSchema.findOne({train_no:result[0].train_no})
 
         return resultTrain;
 
       case "sanpada":
         result = await sanpadaSchema.find({"hour":{ $gte:hour },"min":{ $gte:min }}).sort({min:1});
+        if(!result.length){
+          return {};
+        }
         resultTrain = await trainSchema.findOne({train_no:result[0].train_no})
 
         return resultTrain;
 
       case "vashi":
         result = await vashiSchema.find({"hour":{ $gte: hour },"min":{ $gte:min }}).sort({min:1});
+        if(!result.length){
+          return {};
+        }
         resultTrain = await trainSchema.findOne({train_no:result[0].train_no})
 
         return resultTrain;
 
       case "mankhurd":
         result = await mankhurdSchema.find({"hour":{ $gte: hour },"min":{ $gte:min }}).sort({min:1});
+        if(!result.length.length){
+          return {};
+        }
         resultTrain = await trainSchema.findOne({train_no:result[0].train_no})
 
         return resultTrain;
 
       case "govandi":
         result = await govandiSchema.find({"hour":{ $gte:hour },"min":{ $gte:min }}).sort({min:1});
+        if(!result.length.length){
+          return {};
+        }
         resultTrain = await trainSchema.findOne({train_no:result[0].train_no})
 
         return resultTrain;
 
       case "chembur":
         result = await chemburSchema.find({"hour":{ $gte:hour },"min":{ $gte: min }}).sort({min:1});
+        if(!result.length.length){
+          return {};
+        }
         resultTrain = await trainSchema.findOne({train_no:result[0].train_no})
 
         return resultTrain;
 
       case "tilaknagar":
         result = await tilaknagarSchema.find({"hour":{ $gte: hour },"min":{ $gte:min }}).sort({min:1});
+        if(!result.length.length){
+          return {};
+        }
         resultTrain = await trainSchema.findOne({train_no:result[0].train_no})
 
         return resultTrain;
 
       case "kurla":
         result = await kurlaSchema.find({"hour":{ $gte: hour },"min":{ $gte: min }}).sort({min:1});
+        if(!result.length.length){
+          return {};
+        }
         resultTrain = await trainSchema.findOne({train_no:result[0].train_no})
 
         return resultTrain;

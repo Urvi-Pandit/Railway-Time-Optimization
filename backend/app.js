@@ -41,15 +41,6 @@ app.use(cookieParser());
 
 
 
-
-
-
-
-
-
-
-
-
 // handle our api routes!
 
 app.use('/', accountApi);

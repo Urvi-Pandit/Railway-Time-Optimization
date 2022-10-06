@@ -49,6 +49,11 @@ const handleSubmit = (event) => {
       })
       .then(function (response) {
           console.log(response.data);
+          console.log(response.data.type)
+          if(response.data.type == "failure"){
+            alert("No train found -- server error --> data not found in database");
+            return;
+          }
           navigate('/showtrains',{state:{source:formData.source,destination:formData.destination,time:formData.time,data:response.data}})
       })
       .catch(function (error) {
@@ -79,15 +84,15 @@ const handleSubmit = (event) => {
         <div className="inputfields">
       {/* <Input label="Source" icon={<i className="fas fa-heart" />} style={{backgroundColor:'#ECEFF1'}}  id="source" name="source"
       value={formData.source} onChange={handleChange} required type='text'/> */}
-      
+
 <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" style={{backgroundColor:'#ECEFF1'}}  id="source" name="source"
       value={formData.source} onChange={handleChange} required type='text'>
 <option selected>Choose a source station</option>
 <option value="Panvel">Panvel</option>
   <option value="Khandeshwar">Khandeshwar</option>
-  <option value="Manasarovar">Manasarovar</option>
+  <option value="Manasarover">Manasarover</option>
   <option value="Kharghar">Kharghar</option>
-  <option value="Belapur">Belapur</option>
+  <option value="Belapur CBD">Belapur CBD</option>
   <option value="Seawood Darave">Seawood Darave</option>
   <option value="Nerul">Nerul</option>
   <option value="Juinagar">Juinagar</option>
@@ -104,16 +109,16 @@ const handleSubmit = (event) => {
          <div className="inputfields">
       {/* <Input label="Destination" icon={<i className="fas fa-heart" />} style={{backgroundColor:'#ECEFF1'}} id="destination" name="destination"
       value={formData.destination} onChange={handleChange} required type='text'/> */}
-      
+
       <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
       style={{backgroundColor:'#ECEFF1'}} id="destination" name="destination"
       value={formData.destination} onChange={handleChange} required type='text'>
   <option selected>Choose a destination station</option>
   <option value="Panvel">Panvel</option>
   <option value="Khandeshwar">Khandeshwar</option>
-  <option value="Manasarovar">Manasarovar</option>
+  <option value="Manasarover">Manasarover</option>
   <option value="Kharghar">Kharghar</option>
-  <option value="Belapur">Belapur</option>
+  <option value="Belapur CBD">Belapur CBD</option>
   <option value="Seawood Darave">Seawood Darave</option>
   <option value="Nerul">Nerul</option>
   <option value="Juinagar">Juinagar</option>
@@ -136,7 +141,7 @@ const handleSubmit = (event) => {
         </div>
 
       </CardBody>
-      
+
     </Card>
 
     </div>
