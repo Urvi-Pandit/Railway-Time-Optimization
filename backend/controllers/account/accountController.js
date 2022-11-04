@@ -32,33 +32,140 @@ exports.provideMaxRoute = async (req, res, next) => {
 
   var harbour_stations_till_csmt = ["Panvel", "Khandeshwar", "Manasarovar", "Kharghar", "Belapur CBD", "Seawood Darave", "Nerul", "Juinagar", "Sanpada", "Vashi", "Mankhurd", "Govandi", "Chembur", "Tilaknagar", "Kurla", "Chunabhatti", "GTB Nagar", "Vadala Road", "Sewri", "Cotton Green", "Reay Road", "Dockyard Road", "Sandhurst Road", "Masjid", "CSMT"];
 
-  var from_station_present = harbour_stations_till_csmt.find(ele => ele === from_station);
-  var to_station_present = harbour_stations_till_csmt.find(ele => ele === to_station);
+  var to_index=0,from_index=0;
+  var from_station_present = harbour_stations_till_csmt.find(ele =>{
+    if(ele === from_station){
+      return ele;
+    }
+    ++from_index;
+  });
+  var to_station_present = harbour_stations_till_csmt.find(ele =>{
+    if(ele === to_station){
+      return ele;
+    }
+    ++to_index;
+  });
 
 
-  if (from_station_present && to_station_present) {
 
-    const value = await Best_Route(from_station_present, to_station_present, station_reach_time);
+  if (from_station_present && to_station_present && from_index<4 && to_index>7) {
+
+    // ------------------>
+    const bestOption = await Best_Route(from_station_present, to_station_present, station_reach_time);
+
+
     // if no route found and value is {}
-    if(Object.keys(value).length === 0 && value.constructor === Object){
+    if(Object.keys(bestOption).length === 0 && bestOption.constructor === Object){
       return res.status(200).json({
         type:"failure",
         train: "No train found"
       })
     }
+
+
     // if route is found
-    if(value.first_train){
+
+    if(bestOption.first_train){
+
+      var firstTrainStartStationReachTime;
+      from_station_present = from_station_present.charAt(0).toLowerCase() + from_station_present.slice(1);
+
+      var firstTrainStartStationReachData = await bestOption.first_train.path.map(ele => {
+        if(ele.station == from_station_present){
+          console.log("true")
+          firstTrainStartStationReachTime = ele.time;
+        }
+      })
+
+    const array = firstTrainStartStationReachTime.split("");
+    var hour = parseInt(array[0]=="0"?array[1]:array[0]+array[1]);
+    var min = parseInt(array[3]=="0"?array[4]:array[3]+array[4]);
+    if(min == 59){
+      hour++;
+    }
+    else{
+      min++;
+    }
+    var firstTrainStartStationReachTime=(hour<9?"0"+hour.toString():hour.toString())+":"+(min<9?"0"+min.toString():min.toString());
+
+
+      const secondOption = await Best_Route(from_station_present, to_station_present, firstTrainStartStationReachTime);
+
+
+      // if no route found and value is {}
+    if(Object.keys(secondOption).length === 0 && secondOption.constructor === Object){
+
       return res.status(200).json({
         type:"success",
-        firstTrain: value.first_train,
-        secondTrain: value.second_train
+        firstOption: {
+          firstTrain:bestOption.first_train,
+          secondTrain: bestOption.second_train
+        },
+        secondOption:{
+          type:"failure",
+          train: "No second train found"
+        }
+      })
+    }
+
+    if(secondOption.first_train){
+      return res.status(200).json({
+        type:"success",
+        firstOption: {
+          firstTrain:bestOption.first_train,
+          secondTrain: bestOption.second_train
+        },
+        secondOption:{
+          firstTrain:secondOption.first_train,
+          secondTrain: secondOption.second_train
+        }
       })
     }else{
       return res.status(200).json({
         type:"success",
-        train: value
+        train1: bestOption,
+        train2: secondOption
       })
     }
+    }
+    else{
+      console.log(bestOption)
+      return res.status(200).json({
+        type:"success",
+        train1: bestOption.taking_next_train?bestOption.taking_next_train:bestOption,
+        train2: bestOption.taking_next_train2
+      })
+    }
+
+
+
+
+  }
+  else if(from_station_present && to_station_present && to_index<=7){
+
+
+    var next_train = await getNextTrain(from_station_present.toLowerCase(), station_reach_time);
+
+    var firstTrainReachTime = await getFirstTrainReachTime(next_train,from_station_present.toLowerCase());
+      const array = firstTrainReachTime.split("");
+      var Hour = parseInt(array[0]=="0"?array[1]:array[0]+array[1]);
+      var Min = parseInt(array[3]=="0"?array[4]:array[3]+array[4]);
+      if(Min == 59){
+        Hour++;
+      }
+      else{
+        Min++;
+      }
+      var Time=(Hour<9?"0"+Hour.toString():Hour.toString())+":"+(Min<9?"0"+Min.toString():Min.toString());
+
+      const taking_next_train = await getNextTrain(from_station_present.toLowerCase(), Time);
+
+      return res.status(200).json({
+        type:"success",
+        train1: next_train,
+        train2: taking_next_train
+      })
+
 
   }
 
@@ -67,7 +174,9 @@ exports.provideMaxRoute = async (req, res, next) => {
 
 
   const Best_Route = async (from_station_present, to_station_present, station_reach_time) => {
+    console.log(station_reach_time)
     var next_train = await getNextTrain(from_station_present.toLowerCase(), station_reach_time);
+    console.log(next_train.train_no)
 
     if (next_train.end_station == "thane") {
       var local_start_stations = ["Panvel", "Belapur CBD", "Nerul"];
@@ -96,16 +205,33 @@ exports.provideMaxRoute = async (req, res, next) => {
       }else{
         var timeDiffBetFirstAndSecondTrain =  await getTimeDiffBetFirstAndSecondTrain(next_train,taking_next_train);
 
-        if(timeDiffBetFirstAndSecondTrain >= timeDiff){
+
+        if(timeDiffBetFirstAndSecondTrain > timeDiff){
+          console.log("if")
           return {"first_train":next_train,
                   "second_train":nextTrainAtBelapur};
         }else{
-          return taking_next_train;
+
+          var secondTrainReachTime = await getFirstTrainReachTime(taking_next_train,from_station_present.toLowerCase());
+          const array = secondTrainReachTime.split("");
+          var secondhour = parseInt(array[0]=="0"?array[1]:array[0]+array[1]);
+          var secondmin = parseInt(array[3]=="0"?array[4]:array[3]+array[4]);
+          if(secondmin == 59){
+            secondhour++;
+          }
+          else{
+            secondmin++;
+          }
+          var secondtime=(secondhour<9?"0"+secondhour.toString():secondhour.toString())+":"+(secondmin<9?"0"+secondmin.toString():secondmin.toString());
+          const taking_next_train2 = await getNextTrain(from_station_present.toLowerCase(), secondtime);
+
+          return {taking_next_train,taking_next_train2};
         }
       }
 
     }
     else {
+      console.log("next")
       return next_train;
     }
 
@@ -117,6 +243,7 @@ exports.provideMaxRoute = async (req, res, next) => {
     const array = time.split("");
     const hour = parseInt(array[0]=="0"?array[1]:array[0]+array[1]);
     const min = parseInt(array[3]=="0"?array[4]:array[3]+array[4]);
+    console.log(hour+"  "+min)
     var result;
     var resultTrain;
 
@@ -133,14 +260,16 @@ exports.provideMaxRoute = async (req, res, next) => {
 
       case "khandeshwar":
 
-        result = await khandeshwarSchema.find({"hour":{ $gte: hour },"min":{ $gte:min }}).sort({min:1});
+        result = await khandeshwarSchema.find({"hour":{ $gte: hour },"min":{ $gte:min }}).sort({"hour":1,"min":1});
+        console.log("result")
+        console.log(result)
+
         if(!result.length){
           return {};
         }
-        console.log(result)
 
         resultTrain = await trainSchema.findOne({train_no:result[0].train_no})
-
+        console.log(resultTrain)
         return resultTrain;
 
       case "manasarover":
@@ -283,13 +412,14 @@ exports.provideMaxRoute = async (req, res, next) => {
    const array = belapurReachTime.split("");
   var hour = parseInt(array[0]=="0"?array[1]:array[0]+array[1]);
   var min = parseInt(array[3]=="0"?array[4]:array[3]+array[4]);
+  var updatedMin=min;
   if(min == 59){
     hour++;
   }
   else{
-    min++;
+    updatedMin++;
   }
-  var time=(hour<9?"0"+hour.toString():hour.toString())+":"+(min<9?"0"+min.toString():min.toString());
+  var time=(hour<9?"0"+hour.toString():hour.toString())+":"+(updatedMin<9?"0"+updatedMin.toString():updatedMin.toString());
   console.log(time);
     nextTrainAtBelapur = await getNextTrain("belapur cbd", time);
    console.log(nextTrainAtBelapur);
@@ -299,10 +429,14 @@ exports.provideMaxRoute = async (req, res, next) => {
       nextTrainTime= ele.time;
     }
    });
+   console.log(nextTrainTime)
 
-   const array1 = nextTrainTime.split("");
+  const array1 = nextTrainTime.split("");
   var hour1 = parseInt(array1[0]=="0"?array1[1]:array1[0]+array1[1]);
   var min1 = parseInt(array1[3]=="0"?array1[4]:array1[3]+array1[4]);
+
+  console.log(hour1+"-"+hour)
+  console.log(min1+"-"+min)
 
   var hDiff = hour1 - hour;
   var mDiff = min1 - min;
