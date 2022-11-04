@@ -16,7 +16,7 @@ import LoadingSpinner from '../../components/spinner/spinner';
 const Show_Trains = () => {
 
   const location = useLocation();
-
+  console.log(location.state.data.train1.first_train)
   const [open, setOpen] = useState(0);
   const [TrainData, setlocation] = useState(location.state);
   const [Train1, settrain1] = useState({});
@@ -28,13 +28,15 @@ const Show_Trains = () => {
   const [Journey1endTime,setJourney1endTime] = useState("")
   const [Journey2endTime,setJourney2endTime] = useState("")
 
+  
+
 
   useEffect(() => {
-    if (location.state.data.firstTrain) {
+    if (location.state.data.train1.first_train) {
 
-      settrain2(location.state.data.secondTrain)
+      settrain2(location.state.data.train1.second_train)
       var newArr = [];
-      location.state.data.secondTrain.path.map(ele => {
+      location.state.data.train1.second_train.path.map(ele => {
         if(location.state.destination.toLowerCase()==ele.station){
           setJourney2endTime(ele.time);
         }
@@ -50,12 +52,12 @@ const Show_Trains = () => {
       })
       setitem2(newArr);
 
-      settrain1(location.state.data.firstTrain)
+      settrain1(location.state.data.train1.first_train)
        newArr = [];
-      location.state.data.firstTrain.path.map(ele => {
+      location.state.data.train1.first_train.path.map(ele => {
         if(location.state.source.toLowerCase()==ele.station){
           setJourney1startTime(ele.time)
-        }else if(location.state.data.secondTrain.start_station == ele.station){
+        }else if(location.state.data.train1.second_train.start_station == ele.station){
           setJourney1endTime(ele.time)
         }
         var newObj = {
@@ -71,9 +73,9 @@ const Show_Trains = () => {
 
 
     } else {
-      settrain1(location.state.data.train)
+      settrain1(location.state.data.train1)
       newArr = [];
-      location.state.data.train.path.map(ele => {
+      location.state.data.train1.path.map(ele => {
         if(location.state.source.toLowerCase()==ele.station){
           setJourney1startTime(ele.time)
         }else if(location.state.destination.toLowerCase() == ele.station){
@@ -116,7 +118,7 @@ const Show_Trains = () => {
     <div>
 
       <div className='Home_Banner' style={{ paddingTop: 10 }}>
-        <Navbar />
+        {/* <Navbar /> */}
         <div style={{ marginTop: 35 }}>    </div>
         <RouteForm />
       </div>
@@ -180,6 +182,7 @@ const Show_Trains = () => {
       </div>
     </div>
 
+      // <div>Show trains</div>
 
   )
 }
