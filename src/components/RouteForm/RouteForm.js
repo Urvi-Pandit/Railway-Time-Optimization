@@ -41,11 +41,10 @@ const handleSubmit = (event) => {
   // navigate('/showtrains',{state:{source:formData.source,destination:formData.destination,time:formData.time}})
   console.log(formData);
 
-  axios.post("http://localhost:8787/getTimeSavingRoute", {
+  axios.post("https://railway-time-optimisation.herokuapp.com/getTimeSavingRoute",{
           from : formData.source,
           to: formData.destination,
           time: formData.time,
-
       })
       .then(function (response) {
           console.log(response.data);
@@ -60,12 +59,6 @@ const handleSubmit = (event) => {
           console.log(error);
       });
 
-  // setFormData({
-  //   source: "",
-  //   destination: "",
-  //   time: 13.00,
-  //   passengers: 1,
-  // });
 };
 
   return (
