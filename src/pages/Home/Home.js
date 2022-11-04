@@ -14,7 +14,7 @@ const Home = () => {
 
     <div className='Home_Container'>
         <div className='Home_Banner'style={{paddingTop:10}}>
-          {/* <Navbar /> */}
+          <Navbar />
           {/* <h1 style={{marginLeft:"20%",fontSize:40}}>Travel that moves you</h1>
           <h3 style={{marginLeft:"20%",fontSize:30,marginTop:10}}>Book train tickets</h3> */}
           

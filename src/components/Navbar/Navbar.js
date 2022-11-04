@@ -99,7 +99,7 @@ export default function Example() {
             
             
  
-             <Link className='Navbar_Content' style={{cursor:'pointer'}} to="/">
+             {/* <Link className='Navbar_Content' style={{cursor:'pointer'}} to="/">
                  <Typography variant="h5" color="gray" className="mb-2">
                  Trains
                  </Typography>
@@ -128,7 +128,7 @@ Sign In
 Create an account
 </Typography>
 
-</Link>
+</Link> */}
       {/* <Typography
         as="li"
         variant="small"
@@ -147,7 +147,7 @@ Create an account
   return (
     <Navbar style={{backgroundColor:'transparent'}} className="mx-auto max-w-screen-2xl py-2 px-4 lg:px-8 lg:py-4">
       <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
-      {/* <img src={project_logo}  style={{height:40}}/> */}
+      <img src={project_logo}  style={{height:40}}/>
    
         <Typography
           as="a"
@@ -166,9 +166,9 @@ Create an account
           </span>
         </Typography>
         <div className="hidden lg:block">{navList}</div>
-        <Button variant="gradient" size="sm" className="hidden lg:inline-block">
+        {/* <Button variant="gradient" size="sm" className="hidden lg:inline-block">
           <span>Buy Now</span>
-        </Button>
+        </Button> */}
         <IconButton
           variant="text"
           className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
@@ -209,9 +209,9 @@ Create an account
       </div>
       <MobileNav open={openNav}>
         {navList}
-        <Button variant="gradient" size="sm" fullWidth className="mb-2">
+        {/* <Button variant="gradient" size="sm" fullWidth className="mb-2">
           <span>Buy Now</span>
-        </Button>
+        </Button> */}
       </MobileNav>
     </Navbar>
   );
