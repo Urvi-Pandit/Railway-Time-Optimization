@@ -210,7 +210,7 @@ const [Train2_secondTrainJourney2endTime,setTrain2_secondJourney2endTime] = useS
             <div className='flex justify-center'> 
             <Breadcrumbs  separator="-">
       <a  >
-        {Train1.start_station}
+        {location.state.source}
       </a>
       <a  >
       {Train2.start_station}
@@ -225,7 +225,7 @@ const [Train2_secondTrainJourney2endTime,setTrain2_secondJourney2endTime] = useS
               <div className='gridText'>
               
                 <div className="w-72 " >
-                  <Input label={`From: ${Train1.start_station}`} disabled />
+                  <Input label={`From: ${location.state.source}`} disabled />
                 </div>
                 <div className="w-72">
                   <Input label={`To: ${(Train2.start_station)}`} disabled />
@@ -306,7 +306,7 @@ const [Train2_secondTrainJourney2endTime,setTrain2_secondJourney2endTime] = useS
   <div className='flex justify-center'> 
             <Breadcrumbs  separator="-">
       <a  >
-        {Train2_firstTrain.start_station}
+        {location.state.source}
       </a>
       <a  >
       {Train2_secondTrain.start_station}
@@ -318,7 +318,7 @@ const [Train2_secondTrainJourney2endTime,setTrain2_secondJourney2endTime] = useS
     <AccordionHeader onClick={() => handleOpen(3)}>
       <div className='gridText'>
         <div className="w-72 " >
-          <Input label={`From: ${Train2_firstTrain.start_station}`} disabled />
+          <Input label={`From: ${location.state.source}`} disabled />
         </div>
         <div className="w-72">
           <Input label={`To: ${(Train2_secondTrain.start_station)}`} disabled />
@@ -344,7 +344,7 @@ const [Train2_secondTrainJourney2endTime,setTrain2_secondJourney2endTime] = useS
     <div className='flex justify-center'> 
             <Breadcrumbs  separator="-">
       <a  >
-        {Train2_secondTrain.start_station}
+        {location.state.source}
       </a>
       <a  >
       {location.state.destination}
